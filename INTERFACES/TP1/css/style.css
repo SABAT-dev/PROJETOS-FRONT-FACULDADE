@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Saira Extra Condensed', sans-serif;
+}
+
+html,body{
+    height: 100%;
+    background-color: #ffe7b9;
+}
+
+.titles h2, h3{
+    color: #8a7a49;
+}
+
+.banner img{
+    width: 100%;
+}
