@@ -10,8 +10,9 @@ html,body{
     background-color: #ffe7b9;
 }
 
-.titles h2, h3{
+h2, h3 {
     color: #8a7a49;
+    margin-bottom: 15px;
 }
 
 .banner img{
