@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+.header {
+    background-color: #2B2223;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.logo img{
+    float: left;
+    width: 132.21px;
+    height: 100px;
+    left: 190px;
+    top: 16px;
+}
+
+.nav input{
+    width: 425px;
+    height: 42px;
+    left: 352px;
+    top: 27px;
+    margin-top: 2.5em;
+
+    background: #F2F1F1;
+    border-radius: 20px;
+    border-style: none;
+}
+
+.localization img{
+    float: right;
+    width: 30px;
+    height: 30px;
+    left: 839px;
+    top: 33px;
+}
+
+.localization p{
+    float: right;
+    width: 53px;
+    height: 18px;
+    left: 874px;
+    top: 33px;
+    border: 1px solid;
+    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    
+    color: #F2F1F1;    
+}
