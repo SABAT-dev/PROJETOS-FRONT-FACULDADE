@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Contato</title>
+  <link href="reset.css" type="text/css" rel="stylesheet">
+  <link href="estilos.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet"> 
+</head>
+<body>
+
+  <div id="container">
+    <header>
+      <h1><a href="index.html" title="Acessar Home">GK Fashion</a></h1>
+      <p class="sacola">Nenhum item na sacola de compras</p>
+
+      <nav class="menu-principal">
+        <ul>
+          <li><a href="#" title="Link para Conta">Sua conta</a></li>
+          <li><a href="#" title="Link para Desejos">Lista de desejos</a></li>
+          <li><a href="cartao_fidelidade.html" title="Link para Cartão Fidelidade">Cartão Fidelidade</a></li>
+          <li><a href="sobre.html" title="Link para Sobre">Sobre</a></li>
+          <li><a href="contato.html" title="Link para Contato">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="contato">
+        <h2>Entre em contato</h2>
+        <form>
+          <div class="formulario">
+            <label for="nome">Nome:</label>
+            <input id="nome" type="text" name="name" title="Preencha seu nome" required="required" placeholder="Digite seu nome">
+          </div>
+
+          <div class="formulario">
+            <label for="email">E-mail:</label>
+            <input id="email" type="email" name="email_user" title="Preencha com seu e-mail" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="email@exemplo.com">
+          </div>
+
+          <div class="formulario">
+            <label>Motivo:</label>
+            <select name="motivo" id="opcao" required="required">
+              <option value="">Selecione</option>
+              <option value="">Sugestão</option>
+              <option value="">Crítica</option>
+              <option value="">Elogio</option>
+              <option value="">Outros</option>
+            </select>
+          </div>
+
+          <div class="formulario">
+            <label for="comentario">Comentários:</label>
+            <textarea id="comentario" name="comentario_user" required="required" placeholder="Digite seu comentário"></textarea>
+          </div>
+
+          <div class="botao">
+            <button id="botao" type="submit">Enviar</button>
+          </div>
+        </form>
+      </section>
+    </main>
+    
+    <footer>
+      <div class="caixa-footer">
+        <img src="img/logo_rodape.png" title="Logo do rodapé" alt="Logo rodapé">
+        &copy; Copyright GK Fashion
+        <ul class="social">
+          <li><a href="http://www.facebook.com/gkfashion" title="Link para Facebook">Facebook</a></li>
+          <li><a href="http://www.twitter.com/gkfashion" title="Link para Twitter">Twitter</a></li>
+          <li><a href="http://plus.google.com/gkfashion" title="Link para Google+">Google+</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
