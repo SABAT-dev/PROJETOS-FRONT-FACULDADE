@@ -5,6 +5,11 @@
     font-family: 'PT Sans Narrow', sans-serif;
 }
 
+h1 {
+    margin: 25px;
+    color: #D54D60;
+}
+
 .header {
     background-color: #2B2223;
     display: flex;
@@ -20,39 +25,105 @@
     top: 16px;
 }
 
-.nav input{
+.busca input{
     width: 425px;
     height: 42px;
     left: 352px;
     top: 27px;
-    margin-top: 2.5em;
+    padding: 0.5rem;
 
     background: #F2F1F1;
     border-radius: 20px;
-    border-style: none;
+    border: none;
 }
 
-.localization img{
-    float: right;
+.nav ul li{
+    list-style-type: none;
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.nav img{
     width: 30px;
     height: 30px;
     left: 839px;
     top: 33px;
+    margin-top: 15px;
 }
 
-.localization p{
-    float: right;
-    width: 53px;
-    height: 18px;
-    left: 874px;
-    top: 33px;
-    border: 1px solid;
-    
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
+.nav p{
+    padding: 0 10px;
+    color: #F2F1F1;
+}
+
+.localization{
+    display: flex;
+}
+
+.eventos img{
     text-align: center;
-    
-    color: #F2F1F1;    
+    width: 100vw;
+    height: 50vh;
+}
+
+.sugestoes{
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.sugestoes img{
+    width: 50vh;
+    border-radius: 20px;
+    margin-bottom: 4em;
+}
+
+.sugestoes img:hover{
+    filter: blur(2px) opacity(0.5) drop-shadow(0 0 0 #D54D60);
+    transition: 0.65s;
+}
+
+.sugestoes img::after{
+    content: attr(data-title);
+}
+
+.footer{
+    background-color: #2B2223;
+    display: flex;
+    justify-content: center;
+    gap: 2.5em;
+    position: relative;
+}
+
+.logo-footer img{
+    width: 100px;
+    height: 105px;
+    left: 190px;
+    top: 919px;
+}
+
+.icone-github img{
+    width: 25px;
+    height: 25px;
+    margin: 2.5em 1em; 
+}
+
+.icone-instagram img{
+    width: 25px;
+    height: 25px;
+    margin: 2.5em 1em; 
+}
+
+.icone-linkedin img{
+    width: 25px;
+    height: 25px;
+    margin: 2.5em 1em;   
+}
+
+.copyright{
+    text-align: center;
+    color: #F2F1F1;
+    width: 635px;
+    height: 70px;
+    margin: 1em 6rem;       
 }
