@@ -5,9 +5,10 @@
     font-family: 'PT Sans Narrow', sans-serif;
 }
 
-h1 {
+.title h1 {
     margin: 25px;
     color: #D54D60;
+    font-weight: bold;
 }
 
 .header {
@@ -60,11 +61,18 @@ h1 {
     display: flex;
 }
 
-.eventos img{
+.carousel-inner img{
+    width: 50vw;
+    height: 25%;
+    margin: auto;
+    text-align: center;
+}
+
+/* .eventos img{
     text-align: center;
     width: 100vw;
-    height: 50vh;
-}
+    height: 50px;
+} */
 
 .sugestoes{
     display: flex;
