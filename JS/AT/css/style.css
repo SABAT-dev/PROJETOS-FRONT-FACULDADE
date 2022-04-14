@@ -1,0 +1,274 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* :root {
+    --text-color: #f1f1f1;
+    --font-family-title: 'Press Start 2P', cursive;
+} */
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #245501;
+}
+
+@keyframes headerAnimation {
+    from {
+        transform: scale(0.2) translateY(50vh);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes arrow-down {
+    from {
+        transform: translateY(0);
+        opacity: 0.4
+    }
+
+    to {
+        transform: translateY(-0.4em);
+        opacity: 0.9
+    }
+}
+
+@keyframes shake {
+    0% {
+        margin-left: 0;
+    }
+
+    25% {
+        margin-left: 5px;
+    }
+
+    50% {
+        margin-left: 0;
+    }
+
+    75% {
+        margin-left: -5px;
+    }
+
+    100% {
+        margin-left: 0;
+    }
+}
+
+.memory-game button{
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: #aad576;
+    color: white;
+    margin: 30px 0px 0px 0;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 30px;
+    width: 200px;
+}
+
+.memory-game {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.memory-game h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2em;
+}
+
+.memory-game .result {
+    text-align: start;
+    margin: 20px 0px 0px 20px;
+}
+
+.memory-game button:active, .memory-game button:hover {
+    box-shadow: 0px 8px 16px 2px rgba(153, 255, 0, 0.5);
+    border: 2px solid 70e000;
+}
+
+.memory-game button:disabled {
+    opacity: 0.3;
+}
+
+.cardBoard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #132a13;
+    border-radius: 10px;
+    margin: 10px auto 10px auto;
+}
+
+.flip-card {
+    margin: 10px;
+    background-color: transparent;
+    height: 60px;
+    width: 60px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 1.3s;
+    transform-style: preserve-3d;
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    background-color: #aad576;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10%;
+    box-shadow: 0px 8px 16px 2px rgba(108, 108, 128, 0.5);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.card-front img, .card-back img {
+    height: 60px;
+    width: 50px;
+}
+
+.disabledCard {
+    pointer-events: none;
+}
+
+.shakeCard {
+    animation: shake 0.1s;
+    animation-iteration-count: 2;
+}
+
+/* SweetAlert */
+.swal-overlay {
+    background-color: rgba(192, 192, 192, .5);
+}
+
+.swal-button {
+    padding: 7px 19px;
+    border-radius: 2px;
+    background-color: #245501;
+    font-size: 12px;
+    border: 1px solid black;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Breakpoints */
+/* Se a tela tiver pelo menos 400px vai carregar estes estilos */
+@media (min-width: 400px) {
+    body {
+        font-size: 18px;
+    }
+
+    .cardBoard {
+        width: 400px;
+    }
+
+    .cardBoard .flip-card {
+        height: 70px;
+        width: 70px;
+    }
+
+    .cardBoard .flip-card img {
+        height: 70px;
+        width: 55px;
+    }
+
+    .memory-game .result {
+        text-align: center;
+    }
+}
+
+/* Se a tela tiver pelo menos 560px vai carregar estes estilos */
+@media (min-width: 560px) {
+    .cardBoard {
+        width: 420px;
+    }
+
+    .cardBoard .flip-card {
+        height: 80px;
+        width: 70px;
+    }
+
+    .cardBoard .flip-card img {
+        height: 80px;
+        width: 55px;
+    }
+}
+
+@media (min-width: 625px) {
+    body {
+        font-size: 20px;
+    }
+
+    .cardBoard {
+        width: 420px;
+    }
+
+    .cardBoard .flip-card {
+        height: 90px;
+        width: 80px;
+    }
+
+    .cardBoard .flip-card img {
+        height: 90px;
+        width: 65px;
+    }
+}
+
+/* Se a tela tiver pelo menos 880px vai carregar estes estilos */
+@media (min-width: 880px) {
+    body {
+        font-size: 22px;
+    }
+
+    .cardBoard {
+        width: 520px;
+    }
+
+    .cardBoard .flip-card {
+        height: 100px;
+        width: 100px;
+    }
+
+    .cardBoard .flip-card img {
+        height: 100px;
+        width: 80px;
+    }
+}
+
+/* Se a tela tiver pelo menos 880px de largura e 981px de altura vai carregar estes estilos */
+@media (min-width: 880px) and (min-height: 981px) {
+    .cardBoard {
+        width: 800px;
+    }
+
+    .cardBoard .flip-card {
+        margin: 30px;
+        height: 120px;
+        width: 120px;
+    }
+
+    .cardBoard .flip-card img {
+        height: 120px;
+        width: 100px;
+    }
+}
