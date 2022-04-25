@@ -1,13 +1,14 @@
-function start() {
-    createBoard()
-    showUserTime()
+function iniciar() {
+    criarTabuleiro()
+    mostrarTempoUsuario()
 }
 
-let cardBoard = document.querySelector('#cardBoard')
-const btnStart = document.querySelector('#btnStart')
-const result = document.querySelector('#result')
-const cardBack = './images/dev.svg'
-let cards = [
+let tabuleiro = document.querySelector('#cardBoard');
+const btnStart = document.querySelector('#btnStart');
+const result = document.querySelector('#result');
+const cardBack = './images/dev.svg';
+
+let cartas = [
     { id: 'aws0', order: 0, value: 'aws', path: './images/aws.svg' },
     { id: 'aws1', order: 1, value: 'aws', path: './images/aws.svg' },
     { id: 'html50', order: 2, value: 'html', path: './images/html5.svg' },
@@ -25,19 +26,19 @@ let cards = [
     { id: 'react0', order: 14, value: 'react', path: './images/react.svg' },
     { id: 'react1', order: 15, value: 'react', path: './images/react.svg' },
 ]
-let choosedCards = []
+let cartasEscolhidas = []
 let cardValues = []
-let pairs = []
-let firstCard, secondCard, startTime, endTime
+let pares = []
+let primeiraCarta, segundaCarta, iniciarTempo, finalizarTempo
 let storage = window.localStorage;
-let times = []
+let tempos = []
 
-function createBoard() {
-    for (card of cards) {
-        cardBoard.innerHTML +=
+function criarTabuleiro() {
+    for (card of cartas) {
+        tabuleiro.innerHTML +=
             `              
                     <div class="flip-card">
-                        <div class="flip-card-inner" id="${card.id}" onclick="checkCard(${card.id}, '${card.value}')">
+                        <div class="flip-card-inner" id="${card.id}" onclick="verificarCartas(${card.id}, '${card.value}')">
                             <div class="card-front">
                                 <img src="${card.path}"> 
                             </div>
@@ -48,127 +49,127 @@ function createBoard() {
                     </div>                   
                 `
     }
-    disableAllCards()
+    desativarTodasCartas()
 }
 
-function startGame() {
-    startTime = new Date()
-    cardBoard.innerHTML = ''
+function comecarJogo() {
+    iniciarTempo = new Date()
+    tabuleiro.innerHTML = ''
     btnStart.disabled = true
 
-    cards = shuffle(cards)
+    cartas = embaralhar(cartas)
 
-    createBoard()
+    criarTabuleiro()
 
     setTimeout(function () {
-        for (card of cards) {
-            flip(card)
+        for (card of cartas) {
+            virarCartas(card)
         }
-        enableAllCards()
+        ativarTodasCartas()
     }, 1500)
 }
 
-const shuffle = (lista) => {
+const embaralhar = (lista) => {
     lista.sort(function () {
         return .5 - Math.random()
     })
     return lista
 }
 
-const flip = (card) => {
+const virarCartas = (card) => {
     let cardHTML = document.getElementById(`${card.id}`)
-    cardHTML.classList.add("flip");
+    cardHTML.classList.toggle("flip");
 }
 
-const unFlip = (card) => {
+const desvirarCartas = (card) => {
     let cardHTML = document.getElementById(`${card.id}`)
     cardHTML.classList.remove("flip");
 }
 
-const checkCard = (card, value) => {
-    choosedCards.push(card)
+const verificarCartas = (card, value) => {
+    cartasEscolhidas.push(card)
     cardValues.push(value)
 
-    switch (choosedCards.length) {
+    switch (cartasEscolhidas.length) {
         case 1:
-            firstCard = choosedCards[0]
-            unFlip(firstCard)
+            primeiraCarta = cartasEscolhidas[0]
+            desvirarCartas(primeiraCarta)
             break
         case 2:
-            secondCard = choosedCards[1]
-            unFlip(secondCard)
-            disableCard(firstCard, secondCard)
+            segundaCarta = cartasEscolhidas[1]
+            desvirarCartas(segundaCarta)
+            desativarCarta(primeiraCarta, segundaCarta)
             if (cardValues[0] == cardValues[1]) {
-                pairs.push(firstCard, secondCard)
+                pares.push(primeiraCarta, segundaCarta)
                 setTimeout(function () {
-                    enableAllCards()
-                    disableCorrectPairs()
+                    ativarTodasCartas()
+                    desativarParesCorretos()
                 }, 1500)
             } else {
                 setTimeout(function () {
-                    shakeCard(firstCard)
-                    shakeCard(secondCard)
+                    cartaAgitada(primeiraCarta)
+                    cartaAgitada(segundaCarta)
 
-                    flip(firstCard)
-                    flip(secondCard)
+                    virarCartas(primeiraCarta)
+                    virarCartas(segundaCarta)
 
-                    enableAllCards()
-                    disableCorrectPairs()
+                    ativarTodasCartas()
+                    desativarParesCorretos()
                 }, 1500)
             }
-            removeShakeCard(firstCard)
-            removeShakeCard(secondCard)
+            removerCartaAgitada(primeiraCarta)
+            removerCartaAgitada(segundaCarta)
             cardValues = []
-            choosedCards = []
+            cartasEscolhidas = []
             break
     }
 
     setTimeout(function () {
         if (gameOver()) {
-            endTime = new Date()
+            finalizarTempo = new Date()
             swal({
                 title: "Jogo finalizado!",
-                text: `Tempo da partida: ${endTime - startTime}`,
+                text: `Tempo da partida: ${finalizarTempo - iniciarTempo}`,
                 icon: "success",
                 button: "ok",
             });
-            saveUserTime()
-            showUserTime()
+            salvarTempoUsuario()
+            mostrarTempoUsuario()
             resetGame()
         }
     }, 1500)
 }
 
-const shakeCard = (card) => {
+const cartaAgitada = (card) => {
     let cardHTML = document.getElementById(`${card.id}`)
     cardHTML.classList.add("shakeCard");
 }
 
-const removeShakeCard = (card) => {
-    let cardHTML = document.getElementById(`${card.id}`)
-    cardHTML.classList.remove("shakeCard");
+const removerCartaAgitada = (card) => {
+    let cartaHTML = document.getElementById(`${card.id}`)
+    cartaHTML.classList.remove("shakeCard");
 }
 
-const disableCorrectPairs = () => {
-    for (card of pairs) {
+const desativarParesCorretos = () => {
+    for (card of pares) {
         document.getElementById(`${card.id}`).classList.add("disabledCard");
     }
 }
 
-const enableAllCards = () => {
-    for (card of cards) {
+const ativarTodasCartas = () => {
+    for (card of cartas) {
         document.getElementById(`${card.id}`).classList.remove("disabledCard");
     }
 }
 
-const disableAllCards = () => {
-    for (card of cards) {
+const desativarTodasCartas = () => {
+    for (card of cartas) {
         document.getElementById(`${card.id}`).classList.add("disabledCard");
     }
 }
 
-const disableCard = (firstCard, secondCard) => {
-    for (card of cards) {
+const desativarCarta = (firstCard, secondCard) => {
+    for (card of cartas) {
         if (card.id != firstCard.id && card.id != secondCard.id) {
             document.getElementById(`${card.id}`).classList.add("disabledCard");
         }
@@ -176,43 +177,43 @@ const disableCard = (firstCard, secondCard) => {
 }
 
 const gameOver = () => {
-    if (pairs.length == cards.length) {
+    if (pares.length == cartas.length) {
         return true
     }
     return false
 }
 
 const resetGame = () => {
-    pairs = []
+    pares = []
 
     // Ordena os elementos do array para poder recuperar a posição incial de cada carta
-    for (card of cards) {
-        card = cards.sort(function (a, b) {
+    for (card of cartas) {
+        card = cartas.sort(function (a, b) {
             return a.order - b.order
         })
     }
-    cardBoard.innerHTML = ''
-    createBoard()
+    tabuleiro.innerHTML = ''
+    criarTabuleiro()
     btnStart.disabled = false
 }
 
 // Local Storage - set
-const saveUserTime = () => {
-    let time = endTime - startTime
-    times.push(time)
-    storage.setItem('times', JSON.stringify(times))
+const salvarTempoUsuario = () => {
+    let time = finalizarTempo - iniciarTempo
+    tempos.push(time)
+    storage.setItem('times', JSON.stringify(tempos))
 }
 
 // Local Storage - get
-const showUserTime = () => {
+const mostrarTempoUsuario = () => {
     if (localStorage.times) {
-        times = JSON.parse(storage.getItem('times'))
-        for (let i = 0; i <= times.length; i++) {
-            times.sort(function (a, b) {
+        tempos = JSON.parse(storage.getItem('times'))
+        for (let i = 0; i <= tempos.length; i++) {
+            tempos.sort(function (a, b) {
                 return a - b
             })
         }
-        result.innerHTML = `Melhor tempo: ${times[0]}`
+        result.innerHTML = `Melhor tempo: ${tempos[0]}`
     } else {
         return
     }
